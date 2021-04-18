@@ -8,7 +8,7 @@ We are testing on PHP8 this libraries:
 
 They say on GD vs Imagick, Imagick always is faster. Not on my machine. CPU i7-4702MQ.
 
-Benchmark results:
+Benchmark results: (image quality set to 90)
 
 - ImageMagick took: 0.37198996543884 seconds. 103 KB.
 - GD took: 0.29470610618591 seconds. 164 KB.

@@ -62,7 +62,7 @@ echo "<img src='$fdest_gd'>";
 $start_time = microtime(true);
 
 $im = Jcupitt\Vips\Image::thumbnail($fsource, $w, ['height' => $h]);
-$im->writeToFile($fdest_vip);
+$im->writeToFile($fdest_vip, ["Q" => 90]);
 
 
 $end_time = microtime(true);
