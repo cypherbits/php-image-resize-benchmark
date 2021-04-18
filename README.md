@@ -17,8 +17,7 @@ Benchmark results: (image quality set to 90)
 Example images:
 
 Original
-
-![Original](benchmark-img.jpg)
+[<img src="benchmark-img.jpg" width="640"/>](benchmark-img.jpg)
 
 ImageMagick
 
