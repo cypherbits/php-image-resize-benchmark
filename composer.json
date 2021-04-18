@@ -1,0 +1,17 @@
+{
+  "name": "cypherbits/php-image-resize-benchmark",
+  "description": "PHP8 image resize benchmark: GD, Imagick and VIPS",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "cypherbits",
+      "email": "info@avanix.es"
+    }
+  ],
+  "require": {
+    "ext-imagick": "*",
+    "jcupitt/vips" : "1.0.8",
+    "ext-gd": "*"
+  }
+}
