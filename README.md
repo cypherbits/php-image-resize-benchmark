@@ -31,3 +31,9 @@ GD
 VIPS
 
 ![Test VIPS](test-vip.jpg)
+
+## Donate
+https://ko-fi.com/cypherbits
+
+Monero address:
+`4BCveGZaPM7FejGkhFyHgtjVXZw52RrYxKs7znZdmnWLfB3xDKAW6SkYZPpNhqBvJA8crE8Tug8y7hx8U9KAmq83PwLtVLe`
