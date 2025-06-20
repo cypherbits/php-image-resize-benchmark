@@ -18,19 +18,25 @@ RUN apt-get update -y && apt-get install -y \
 # Install libjpeg-turbo for optimized JPEG processing
 RUN apt-get install -y libjpeg-turbo8 libjpeg-turbo-progs
 
-# Install build dependencies for MozJPEG
+## Install build dependencies for MozJPEG
 #RUN apt-get update -y && apt-get install -y \
 #    build-essential cmake git autoconf automake libtool pkg-config nasm
-# Install libpng-dev for MozJPEG build
+## Install libpng-dev for MozJPEG build
 #RUN apt-get install -y libpng-dev
-## Build and install MozJPEG
+## Build and install MozJPEG with -fPIC
 #RUN cd /tmp && git clone --depth 1 https://github.com/mozilla/mozjpeg.git \
 #    && cd mozjpeg \
 #    && mkdir build && cd build \
+#    && export CFLAGS="-fPIC" CXXFLAGS="-fPIC" \
 #    && cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release .. \
 #    && make && make install \
 #    && ln -s /opt/mozjpeg/bin/cjpeg /usr/bin/mozjpeg-cjpeg \
 #    && ln -s /opt/mozjpeg/bin/djpeg /usr/bin/mozjpeg-djpeg
+## Replace system libjpeg with MozJPEG
+#RUN ln -sf /opt/mozjpeg/lib/libjpeg.so /usr/lib/x86_64-linux-gnu/libjpeg.so \
+#    && ln -sf /opt/mozjpeg/lib/libjpeg.a /usr/lib/x86_64-linux-gnu/libjpeg.a \
+#    && ln -sf /opt/mozjpeg/lib/libjpeg.so.62 /usr/lib/x86_64-linux-gnu/libjpeg.so.62 \
+#    && ldconfig
 
 # Install blake3 extension
 RUN cd /tmp && wget https://github.com/cypherbits/php-blake3/releases/download/v1.0-php8.3/blake3.zip \

@@ -83,8 +83,11 @@ $results[] = [
 ];
 
 // ~~~~~~~~~~~~~~~~~~ VIPS php library ~~~~~~~~~~~~~~~~~~~~
-$start_time = microtime(true);
 if (class_exists('Jcupitt\Vips\Image')) {
+    // Disable VIPS cache to ensure consistent results
+    Jcupitt\Vips\Config::cacheSetMax(0);
+
+    $start_time = microtime(true);
     $image = Jcupitt\Vips\Image::newFromFile($fsource);
     $thumb = $image->thumbnail_image($w, ["height" => $h]);
     $thumb->jpegsave($fdest_vip, ["Q" => 90]);
@@ -95,6 +98,23 @@ if (class_exists('Jcupitt\Vips\Image')) {
         'Library' => 'VIPS',
         'Time (s)' => number_format($vips_time, 6),
         'Size (KB)' => $vips_size ? round($vips_size / 1024) : 'N/A',
+    ];
+
+    unset($image);
+    unset($thumb);
+    // ~~~~~~~~~~~~~ VIPS quality 89 ~~~~~~~~~~~~~~
+    $fdest_vip85 = "test-vip89.jpg";
+    $start_time_85 = microtime(true);
+    $image = Jcupitt\Vips\Image::newFromFile($fsource);
+    $thumb = $image->thumbnail_image($w, ["height" => $h]);
+    $thumb->jpegsave($fdest_vip85, ["Q" => 89]);
+    $end_time_85 = microtime(true);
+    $vips85_time = $end_time_85 - $start_time_85;
+    $vips85_size = file_exists($fdest_vip85) ? filesize($fdest_vip85) : 0;
+    $results[] = [
+        'Library' => 'VIPS89',
+        'Time (s)' => number_format($vips85_time, 6),
+        'Size (KB)' => $vips85_size ? round($vips85_size / 1024) : 'N/A',
     ];
 } else {
     $results[] = [
