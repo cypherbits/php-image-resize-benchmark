@@ -26,34 +26,19 @@ This will execute the `benchmark.php` script in a clean environment with PHP 8.3
 
 ## Results
 
-They say on GD vs Imagick, Imagick always is faster. Not on my machine. CPU i7-4702MQ.
+They say on GD vs Imagick, Imagick always is faster. Not on my machine. 
 
-Benchmark results: (image quality set to 90)
+Tested on CPU i7-4702MQ
+Tested on CPU i7-13700K
 
-- ImageMagick took: 0.37198996543884 seconds. 103 KB.
-- GD took: 0.29470610618591 seconds. 164 KB.
-- VIPS took: 0.083019018173218 seconds. 53 KB.
+Benchmark results for i7-13700K on quality (Q) 90:
 
-Example images:
+| Library             | Time (s)  | Size (KB) |
+|---------------------|-----------|-----------|
+| ImageMagick         | 0.129705  | 100       |
+| GD                  | 0.141723  | 221       |
+| VIPS                | 0.103115  | 170       |
+| VIPS Q=89           | 0.089695  | 75        |
+| VIPS Q=75 (default) | 0.086163  | 52        |
 
-Original
-
-[<img src="benchmark-img.jpg" width="640"/>](benchmark-img.jpg)
-
-ImageMagick
-
-![Test Imagick](test-imagick.jpg)
-
-GD
-
-![Test GD](test-gd.jpg)
-
-VIPS
-
-![Test VIPS](test-vip.jpg)
-
-## Donate
-https://ko-fi.com/cypherbits
-
-Monero address:
-`4BCveGZaPM7FejGkhFyHgtjVXZw52RrYxKs7znZdmnWLfB3xDKAW6SkYZPpNhqBvJA8crE8Tug8y7hx8U9KAmq83PwLtVLe`
+VIPS concurrency is set to 1 using Docker `ENV VIPS_CONCURRENCY=1`.

@@ -2,6 +2,7 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
+ENV VIPS_CONCURRENCY=1
 
 # Update and install basic dependencies
 RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install -y \

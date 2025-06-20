@@ -135,6 +135,30 @@ if (class_exists('Jcupitt\Vips\Image')) {
         'Size (KB)' => $vips85_size ? round($vips85_size / 1024) : 'N/A',
         'Memory (KB)' => round($vips85_mem / 1024)
     ];
+
+    // Delete the memory used by the image object
+    unset($image);
+    unset($thumb);
+
+    // ~~~~~~~~~~~~~ VIPS quality 85 ~~~~~~~~~~~~~~
+    // Measure memory usage for VIPS quality 85
+    $fdest_vip85 = "test-vip75.jpg";
+    $start_time_85 = microtime(true);
+    $mem_start_85 = memory_get_usage();
+    $image = Jcupitt\Vips\Image::newFromFile($fsource);
+    $thumb = $image->thumbnail_image($w, ["height" => $h]);
+    $thumb->jpegsave($fdest_vip85, ["Q" => 75]);
+    $mem_end_85 = memory_get_usage();
+    $end_time_85 = microtime(true);
+    $vips85_time = $end_time_85 - $start_time_85;
+    $vips85_size = file_exists($fdest_vip85) ? filesize($fdest_vip85) : 0;
+    $vips85_mem = $mem_end_85 - $mem_start_85;
+    $results[] = [
+        'Library' => 'VIPS Q=75 (default)',
+        'Time (s)' => number_format($vips85_time, 6),
+        'Size (KB)' => $vips85_size ? round($vips85_size / 1024) : 'N/A',
+        'Memory (KB)' => round($vips85_mem / 1024)
+    ];
 } else {
     $results[] = [
         'Library' => 'VIPS',
