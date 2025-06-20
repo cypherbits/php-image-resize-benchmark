@@ -11,7 +11,7 @@
   ],
   "require": {
     "ext-imagick": "*",
-    "jcupitt/vips" : "1.0.8",
+    "jcupitt/vips" : "1.0.10",
     "ext-gd": "*"
   }
 }

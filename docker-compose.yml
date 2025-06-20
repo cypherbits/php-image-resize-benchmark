@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  benchmark:
+    build: .
+    working_dir: /app
+    command: ["php", "benchmark.php"]
